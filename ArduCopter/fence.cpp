@@ -65,7 +65,9 @@ void Copter::fence_check()
             // don't disarm if the high-altitude fence has been broken because it's likely the user has pulled their throttle to zero to bring it down
             if (ap.land_complete || (flightmode->has_manual_throttle() && ap.throttle_zero && !failsafe.radio && ((fence.get_breaches() & AC_FENCE_TYPE_ALT_MAX)== 0))){
                 arming.disarm(AP_Arming::Method::FENCEBREACH);
-
+            } else if (fence_act == AC_Fence::Action::DISARM) {
+                // Don't even try to LAND, disarm immediately
+                arming.disarm(AP_Arming::Method::FENCEBREACH);
             } else {
 
                 // if more than 100m outside the fence just force a land
