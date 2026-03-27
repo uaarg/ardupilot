@@ -38,6 +38,7 @@ public:
         GUIDED               = 6, // guided mode, with target waypoint as fence return point
         GUIDED_THROTTLE_PASS = 7, // guided mode, but pilot retains manual throttle control
         AUTOLAND_OR_RTL      = 8, // fixed wing autoland,if enabled, or RTL
+        DISARM               = 9, // always disarm
     };
 
     enum class AutoEnable : uint8_t
